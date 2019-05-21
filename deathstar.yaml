@@ -1,32 +1,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: httpbin
+  name: deathstar
   labels:
-    app: httpbin
+    app: deathstar
 spec:
   ports:
   - name: http
-    port: 8000
-    targetPort: 80
+    port: 80
   selector:
-    app: httpbin
+    app: deathstar
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: httpbin
+  name: deathstar
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: httpbin
+        app: deathstar
         version: v1
     spec:
       containers:
-      - image: docker.io/citizenstig/httpbin
+      - image: docker.io/kennethreitz/httpbin
         imagePullPolicy: IfNotPresent
-        name: httpbin
-        ports:
-        - containerPort: 80
+        name: deathstar

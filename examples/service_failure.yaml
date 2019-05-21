@@ -1,7 +1,7 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
-  name: "chaos-delay-request"
+  name: "chaos-rewrite-status"
 specs:
   - endpointSelector:
       matchLabels:
@@ -13,6 +13,6 @@ specs:
           protocol: TCP
         rules:
           l7proto: chaos
-          l7: 
-          - probability: "0.5"
-            delay-request: 1s
+          l7:
+          - probability: "0.8"
+            rewrite-status: 504 Application Error
